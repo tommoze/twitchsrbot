@@ -1,0 +1,16 @@
+html
+    body
+        h1 List
+        ol
+            - for (let i = 0; i < list.length; i++)
+                li
+                    span= list[i]
+                    button(type='button' value='delete' onclick='onDelete(' + i + ')') delete
+
+script.
+    var onDelete = function(i) {
+        fetch(`/delete?i=${i}`)
+            .then(function() {
+                location.reload();
+            })
+    }
