@@ -20,7 +20,7 @@ or navigate in your explorer to project and open config.js file\
 replace `your_bot_twitch_account_name` with your bot twitch account name\
 replace `your_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
 replace `#your_channel_name` with your channel\
-save file\
+save file
 
 ## Run bot
 in terminal type:\
