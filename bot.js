@@ -36,14 +36,16 @@ function format(item) {
 function onRequest(context, msg) {
     const title = msg.replace(request, '');
 
-    if (list.includes(title)) {
-        return;
+    if (list.some(e => e.title === title)) {
+        return `@${context.username}: ${title} is already in queue`;
     }
 
     list.push({
         title: title,
         by: context.username
     });
+
+    return null;
 }
 
 function onQueue() {
@@ -68,7 +70,7 @@ function onMessageHandler(target, context, msg, self) {
 
     // If the command is known, let's execute it
     if (commandName.startsWith(request)) {
-        onRequest(context, msg);
+        out = onRequest(context, msg);
     } else if (commandName === queue) {
         out = onQueue();
     } else if (commandName === current && list.length > 0) {
