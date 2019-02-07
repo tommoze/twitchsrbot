@@ -1,16 +1,41 @@
 html
+    head
+        style(type='text/css').
+           .el {
+                display: inline-block;
+                margin: 0 2px;
+            }
     body
         h1 List
         ol
             - for (let i = 0; i < list.length; i++)
                 li
-                    span= list[i]
-                    button(type='button' value='delete' onclick='onDelete(' + i + ')') delete
+                    button(type='button' value='delete' onclick='onMoveUp(' + i + ')' class='el') ∧
+                    button(type='button' value='delete' onclick='onMoveDown(' + i + ')' class='el') ∨
+                    button(type='button' value='delete' onclick='onDelete(' + i + ',' + true + ')' class='el') not found
+                    button(type='button' value='delete' onclick='onDelete(' + i + ')' class='el') delete
+                    input(type='text' value=list[i].title onclick='this.setSelectionRange(0, this.value.length)' class='el' style={width: '400px'})
+                    label(class='el')=list[i].by
 
 script.
-    var onDelete = function(i) {
-        fetch(`/delete?i=${i}`)
+    var doRequest = function(route) {
+        fetch(route)
             .then(function() {
                 location.reload();
-            })
+            });
+    };
+    var onDelete = function(index, notfound) {
+        var route = `/delete?index=${index}`;
+
+        if (notfound) {
+            route = `${route}&notfound=true`
+        }
+
+        doRequest(route);
+    }
+    var onMoveUp = function(index) {
+        doRequest(`/moveup?index=${index}`);
+    };
+    var onMoveDown = function(index) {
+        doRequest(`/movedown?index=${index}`);
     }
