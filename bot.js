@@ -6,7 +6,7 @@ const channels = config.channels;
 const request = config.request;
 const queue = config.queue;
 const current = config.current;
-const queue_limit = config.queue_limit
+const queue_limit = config.queue_limit;
 
 // Define configuration options
 const opts = {
@@ -88,6 +88,10 @@ const app = express();
 app.set('view engine', 'pug')
 const port = 3000;
 
+app.get('/', (req, res) => {
+    res.render('index', { list: list })
+});
+
 app.get('/delete', function (req, res) {
     const out = list.splice(req.query.index, 1);
 
@@ -112,7 +116,4 @@ app.get('/movedown', function(req, res) {
     }
 });
 
-app.get('/', (req, res) => {
-    res.render('index', { list: list })
-});
 app.listen(port);
