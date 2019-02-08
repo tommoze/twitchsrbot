@@ -33,6 +33,10 @@ function format(item) {
     return `${item.title} @${item.by}`;
 }
 
+function formatReverse(item) {
+    return `@${item.by}: ${item.title}`;
+}
+
 function onRequest(context, msg) {
     const title = msg.replace(request, '');
 
@@ -95,26 +99,40 @@ app.get('/', (req, res) => {
 });
 
 app.get('/delete', function (req, res) {
-    const out = list.splice(req.query.index, 1);
+    if (req.query.index) {
+        const out = list.splice(parseInt(req.query.index), 1);
 
-    if (req.query.notfound) {
-        client.say(channels[0], `${format(out[0])} was not found :(`);
+        if (req.query.notfound) {
+            client.say(channels[0], `${formatReverse(out[0])} was not found :(`);
+        }
+
+        res.send({});
+    } else {
+        res.redirect('/');
     }
-
-    res.send({});
 });
 
 app.get('/moveup', function(req, res) {
-    if (parseInt(req.query.index) !== 0) {
-        list.splice(req.query.index - 1, 0, list.splice(req.query.index, 1)[0]);
-        res.send({});
+    if (req.query.index) {
+        const index = parseInt(req.query.index);
+        if (parseInt(req.query.index) !== 0) {
+            list.splice(index - 1, 0, list.splice(index, 1)[0]);
+            res.send({});
+        }
+    } else {
+        res.redirect('/');
     }
 });
 
 app.get('/movedown', function(req, res) {
-    if (parseInt(req.query.index) !== list.length) {
-        list.splice(req.query.index + 1, 0, list.splice(req.query.index, 1)[0]);
-        res.send({});
+    if (req.query.index) {
+        const index = parseInt(req.query.index);
+        if (index !== list.length - 1) {
+            list.splice(index + 1, 0, list.splice(index, 1)[0]);
+            res.send({});
+        }
+    } else {
+        res.redirect('/');
     }
 });
 
