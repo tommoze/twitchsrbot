@@ -84,9 +84,9 @@ function onMyQueue(context) {
     }, []);
 
     if (out.length) {
-        return `${context.username} your queue: ${out.join(' ')}`;
+        return `@${context.username} your queue: ${out.join(' ')}`;
     } else {
-        return `${context.username}: you don't have any request, use '${request} artist title'`;
+        return `@${context.username}: you don't have any request, use '${request} artist title'`;
     }
 }
 
