@@ -77,7 +77,7 @@ function onMyQueue(context) {
         if (cur.by === context.username && i !== 0) {
             return [
                 ...acc,
-                `[${i}] ${format(cur)}`
+                `[${i}] ${cur.title}`
             ];
         }
         return acc;
