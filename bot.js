@@ -7,6 +7,8 @@ const request = config.request;
 const queue = config.queue;
 const current = config.current;
 const queue_limit = config.queue_limit;
+const user_limit = config.user_limit;
+const my_queue = config.my_queue;
 
 // Define configuration options
 const opts = {
@@ -44,6 +46,12 @@ function onRequest(context, msg) {
         return `@${context.username}: ${title} is already in queue`;
     }
 
+    const userRequests = list.filter(e => e.by === context.username);
+
+    if (userRequests.length >= user_limit) {
+        return `@${context.username}: ${user_limit} max songs in queue reached, please request later`;
+    }
+
     list.push({
         title: title,
         by: context.username
@@ -60,7 +68,25 @@ function onQueue() {
         const count = list.length - 1;
         return `${count} ${count > 1 ? 'songs' : 'song'} in queue. ${out}`
     } else {
-        return `Queue is empty. Use ${queue} to add song`;
+        return `Queue is empty. Use ${request} to add song`;
+    }
+}
+
+function onMyQueue(context) {
+    const out = list.reduce((acc, cur, i) => {
+        if (cur.by === context.username && i !== 0) {
+            return [
+                ...acc,
+                `[${i}] ${format(cur)}`
+            ];
+        }
+        return acc;
+    }, []);
+
+    if (out.length) {
+        return `${context.username} your queue: ${out.join(' ')}`;
+    } else {
+        return `${context.username}: you don't have any request, use '${request} artist title'`;
     }
 }
 
@@ -77,6 +103,8 @@ function onMessageHandler(target, context, msg, self) {
         out = onRequest(context, msg);
     } else if (commandName === queue) {
         out = onQueue();
+    } else if (commandName === my_queue) {
+        out = onMyQueue(context);
     } else if (commandName === current && list.length > 0) {
         out = format(list[0]);
     }
