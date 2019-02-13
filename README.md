@@ -31,7 +31,7 @@ open http://localhost:3000 in your browser to manage list
 `!req artist - title` - requests song and adds to queue\
 `!cur` - bot says first song in queue aka playing one\
 `!que` - bot says X songs in queue excluded first one. X can be changed inside config.js\
+`!myque` or `!myreq` - bot says user queue songs\
 `que_limit`. Default value = 3\
-`!myque` - bot says user queue songs
 
 ## Enjoy
