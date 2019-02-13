@@ -33,6 +33,10 @@ function onRequest(context, msg) {
         by: getUsername(context)
     });
 
+    if (config.notifyOnRequest) {
+        return `@${getUsername(context)}: ${list.length} position in queue`;
+    }
+
     return null;
 }
 

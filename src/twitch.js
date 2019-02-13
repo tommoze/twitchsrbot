@@ -59,7 +59,7 @@ emitter.on('message', onMessage);
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
-    onMessage(`Hello people, I'm here to serve, use ${message.howRequest}`);
+    onMessage(`Use ${message.howRequest} to add songs to queue`);
 }
 
 function onDisconnectedHandler(reason) {

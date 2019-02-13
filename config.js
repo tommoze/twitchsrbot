@@ -6,4 +6,5 @@ module.exports = {
     myRequest: '!myreq',
     queueLimit: 3,
     userLimit: 3,
+    notifyOnRequest: true,
 };
