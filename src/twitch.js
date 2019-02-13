@@ -10,12 +10,12 @@ const client = new tmi.client(login);
 // Register our event handlers (defined below)
 client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
+client.on('disconnected', onDisconnectedHandler);
 
 // Connect to Twitch:
 client.connect();
 
 function onMessage(msg) {
-    console.error(msg);
     login.channels.forEach((channel) => client.say(channel, msg));
 }
 
@@ -44,8 +44,8 @@ function onMessageHandler(target, context, msg, self) {
         case config.queue:
             say(target, message.onQueue());
             break;
-        case config.my_queue:
-        case config.my_request:
+        case config.myQueue:
+        case config.myRequest:
             say(target, message.onMyQueue(context));
             break;
         case config.current:
@@ -59,4 +59,9 @@ emitter.on('message', onMessage);
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
+    onMessage(`Hello people, I'm here to serve, use ${message.howRequest}`);
+}
+
+function onDisconnectedHandler(reason) {
+    console.log(`* Disconnected due to ${reason}`);
 }

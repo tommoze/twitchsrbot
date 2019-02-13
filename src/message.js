@@ -23,8 +23,8 @@ function onRequest(context, msg) {
 
     const userRequests = list.filter(e => e.by === getUsername(context));
 
-    if (userRequests.length >= config.user_limit) {
-        return `@${getUsername(context)}: ${config.user_limit} 
+    if (userRequests.length >= config.userLimit) {
+        return `@${getUsername(context)}: ${config.userLimit} 
             max songs in queue reached, please request later`;
     }
 
@@ -38,7 +38,7 @@ function onRequest(context, msg) {
 
 function onQueue() {
     if (list.length > 1) {
-        const out = list.slice(1, config.queue_limit + 1)
+        const out = list.slice(1, config.queueLimit + 1)
             .map((item, i) => `[${i + 1}] ${format(item)}`)
             .join(' ');
 
@@ -85,4 +85,5 @@ module.exports = {
     onQueue,
     onRequest,
     onCurrent,
+    howRequest,
 };
