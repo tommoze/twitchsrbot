@@ -27,6 +27,10 @@ in terminal type:\
 `npm start`\
 open http://localhost:3000 in your browser to manage list
 
+## Update bot
+type in terminal:\
+`git pull`
+
 ## Twitch Chat Commands
 `!req artist - title` - requests song and adds to queue\
 `!cur` - bot says first song in queue aka playing one\
