@@ -34,7 +34,9 @@ function onRequest(context, msg) {
     });
 
     if (config.notifyOnRequest) {
-        return `@${getUsername(context)}: ${list.length} position in queue`;
+        return list.length > 1
+            ? `@${getUsername(context)}: ${list.length - 1} position in queue`
+            : `@${getUsername(context)}: song will be played after current`;
     }
 
     return null;
