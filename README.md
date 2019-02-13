@@ -16,7 +16,7 @@ In terminal paste:\
 ## Configure Bot
 type:\
 `open login.js`\
-or navigate in your explorer to project and open config.js file\
+or navigate in your explorer to project and open `login.js` file\
 replace `your_bot_twitch_account_name` with your bot twitch account name\
 replace `your_bot_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
 replace `#your_twitch_channel` with your channel\
@@ -32,6 +32,5 @@ open http://localhost:3000 in your browser to manage list
 `!cur` - bot says first song in queue aka playing one\
 `!que` - bot says X songs in queue excluded first one. X can be changed inside config.js\
 `!myque` or `!myreq` - bot says user queue songs\
-`que_limit`. Default value = 3\
 
 ## Enjoy
