@@ -15,22 +15,23 @@ In terminal paste:\
 
 ## Configure Bot
 type:\
-`open config.js`\
+`open login.js`\
 or navigate in your explorer to project and open config.js file\
 replace `your_bot_twitch_account_name` with your bot twitch account name\
-replace `your_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
-replace `#your_channel_name` with your channel\
+replace `your_bot_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
+replace `#your_twitch_channel` with your channel\
 save file
 
 ## Run bot
 in terminal type:\
-`node bot.js`\
+`npm start`\
 open http://localhost:3000 in your browser to manage list
 
 ## Twitch Chat Commands
 `!req artist - title` - requests song and adds to queue\
 `!cur` - bot says first song in queue aka playing one\
-`!que` - bot says X songs in queue excluded first one. X can be changed inside config.js `que_limit`. Default value = 3\
+`!que` - bot says X songs in queue excluded first one. X can be changed inside config.js\
+`que_limit`. Default value = 3\
 `!myque` - bot says user queue songs
 
 ## Enjoy
