@@ -37,7 +37,7 @@ type in terminal:\
 `npm install`
 
 ## Twitch Chat Commands
-`!req artist - title` - requests song and adds to queue\
+`!req Artist - Title` - requests song and adds to queue\
 `!cur` - bot says first song in queue aka playing one\
 `!que` - bot says X songs in queue excluded first one. X can be changed inside config.js\
 `!myque` or `!myreq` - bot says user queue songs
