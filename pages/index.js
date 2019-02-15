@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Table from './table';
+import Badge from './badge';
 import 'materialize-css/dist/css/materialize.css';
 
 class App extends Component {
@@ -64,15 +65,16 @@ class App extends Component {
         return (
             <main>
                 <div className="container">
-                    <h1>Song request list</h1>
-                    {list.length > 0 && (
-                        <Table 
-                            list={list}
-                            onDelete={this.handleDelete}
-                            onNotFound={this.handleNotFound}
-                            onMove={this.handleMove}
-                        />
-                    )}
+                    <h1>
+                        Song request
+                        <Badge count={list.length} />
+                    </h1>
+                    <Table 
+                        list={list}
+                        onDelete={this.handleDelete}
+                        onNotFound={this.handleNotFound}
+                        onMove={this.handleMove}
+                    />
                 </div>
             </main>
         );

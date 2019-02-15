@@ -1,5 +1,8 @@
 # twitchsrbot
-Twitch song request bot
+Twitch song request bot\
+Node, express, next.js, react, socketio
+
+![preview](https://user-images.githubusercontent.com/33844718/52884762-960fd500-3177-11e9-8654-f243cc06584a.png)
 
 ## Getting Started
 Install node and git\
