@@ -39,7 +39,7 @@ function onMessageHandler(target, context, msg, self) {
     // If the command is known, let's execute it
     switch(getCommand(msg)) {
         case config.request:
-            say(target, message.onRequest(context, msg));
+            say(target, message.onRequest(context, msg.replace(config.request, '')));
             break;
         case config.queue:
             say(target, message.onQueue());

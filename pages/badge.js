@@ -1,6 +1,6 @@
 export default ({ count }) => (
     <span 
-        class="new badge blue" 
+        className="new badge blue" 
         data-badge-caption="in list"
         style={{
             display: 'inline-block',

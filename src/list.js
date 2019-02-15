@@ -44,5 +44,6 @@ module.exports = {
     getQueue,
     getList,
     remove,
+    getUserQueue,
     move,
 };

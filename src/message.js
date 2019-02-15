@@ -14,8 +14,8 @@ function getUsername(context) {
     return context['display-name'];
 }
 
-function onRequest(context, msg) {
-    const title = msg.replace(config.request, '');
+function onRequest(context, title) {
+    if (!title) { return howRequest; }
 
     if (list.isDuplicate(title)) {
         return `@${getUsername(context)}: ${title} is already in queue`;
