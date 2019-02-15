@@ -30,6 +30,8 @@ open http://localhost:3000 in your browser to manage list
 ## Update bot
 type in terminal:\
 `git pull`
+`rm -rf node_modules/`
+`npm install`
 
 ## Twitch Chat Commands
 `!req artist - title` - requests song and adds to queue\
