@@ -2,7 +2,7 @@
 Twitch song request bot\
 Node, express, next.js, react, socketio
 
-![preview](https://user-images.githubusercontent.com/33844718/52884762-960fd500-3177-11e9-8654-f243cc06584a.png)
+![preview](https://user-images.githubusercontent.com/33844718/52885298-65309f80-3179-11e9-8a50-a16d0addcc87.png)
 
 ## Getting Started
 Install node and git\
