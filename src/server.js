@@ -10,31 +10,27 @@ const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
 
-function move(arr, from, to) {
-    arr.splice(to, 0, arr.splice(from, 1)[0]);
-};
+const update = (socket) => socket.emit('list.update', list.getList());
 
 // socket.io server
 io.on('connection', socket => {
-    emitter.on('list.add', (list) => {
-        socket.emit('list.update', list);
-    });
+    emitter.on('list.add', () => update(socket));
 
     socket.on('list.delete', (index, notFound) => {
-        list.splice(parseInt(index), 1);
-        socket.emit('list.update', list);
+        const out = list.remove(index);
+        update(socket);
         notFound && emitter.emit('notfound', out);
     });
 
     socket.on('list.move', (from, to) => {
-        move(list, from, to);
-        socket.emit('list.update', list);
+        list.move(from, to);
+        update(socket);
     }); 
 })
 
 nextApp.prepare().then(() => {
     app.get('/list', (req, res) => {
-        res.json({ list });
+        res.json({ list: list.getList() });
     });
 
     app.get('*', (req, res) => {
