@@ -33,6 +33,8 @@ function onRequest(context, msg) {
         by: getUsername(context)
     });
 
+    emitter.emit('list.add', list);
+
     if (config.notifyOnRequest) {
         return list.length > 1
             ? `@${getUsername(context)}: ${list.length - 1} position in queue`
