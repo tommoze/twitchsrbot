@@ -21,7 +21,7 @@ function onMessage(msg) {
 
 function getCommand(msg) {
     // Remove whitespace from chat message
-    let command = msg.trim();
+    let command = msg.trim().toLowerCase();
 
     return command.startsWith(config.request)
         ? config.request
@@ -39,7 +39,7 @@ function onMessageHandler(target, context, msg, self) {
     // If the command is known, let's execute it
     switch(getCommand(msg)) {
         case config.request:
-            say(target, message.onRequest(context, msg.replace(config.request, '')));
+            say(target, message.onRequest(context, msg.substring(config.request.length)));
             break;
         case config.queue:
             say(target, message.onQueue());
