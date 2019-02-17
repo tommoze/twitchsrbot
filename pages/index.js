@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Table from 'components/Table';
-import Badge from 'components/Badge';
+import Header from 'components/Header';
 import cookies from 'js-cookie';
 import { themes } from 'components/Theme';
 import nextcookies from 'next-cookies';
@@ -75,10 +75,7 @@ class App extends Component {
         return (
             <main>
                 <div className="container">
-                    <h1>
-                        Song request
-                        <Badge count={list.length} />
-                    </h1>
+                    <Header count={list.length} />
                     <Table 
                         list={list}
                         onDelete={this.handleDelete}
