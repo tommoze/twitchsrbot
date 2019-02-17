@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
-import Table from './table';
-import Badge from './badge';
+import Table from 'components/Table';
+import Badge from 'components/Badge';
 import 'materialize-css/dist/css/materialize.css';
 
 class App extends Component {
