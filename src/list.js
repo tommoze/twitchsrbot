@@ -5,6 +5,8 @@ let list = [];
 
 const isDuplicate = title => list.some(e => e.title === title);
 
+const hasUserRequests = user => list.some(e => e.by === user);
+
 const countByUser = user => list.filter(e => e.by === user).length;
 
 const add = item => {
@@ -46,4 +48,5 @@ module.exports = {
     remove,
     getUserQueue,
     move,
+    hasUserRequests,
 };
