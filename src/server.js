@@ -15,16 +15,18 @@ const update = (socket) => socket.emit('list.update', list.getList());
 // socket.io server
 io.on('connection', socket => {
     emitter.on('list.add', () => update(socket));
+    emitter.on('list.remove',() => update(socket));
+    emitter.on('list.move',() => update(socket));
 
     socket.on('list.delete', (index, notFound) => {
         const out = list.remove(index);
-        update(socket);
+        emitter.emit('list.remove');
         notFound && emitter.emit('notfound', out);
     });
 
     socket.on('list.move', (from, to) => {
         list.move(from, to);
-        update(socket);
+        emitter.emit('list.move');
     }); 
 })
 

@@ -1,39 +1,40 @@
-import App, { Container } from 'next/app'
-import React from 'react'
-import io from 'socket.io-client'
+import App, { Container } from 'next/app';
+import React from 'react';
+import io from 'socket.io-client';
 
 class Wrapper extends App {
-  static async getInitialProps ({ Component, ctx }) {
-    let pageProps = {}
+    static async getInitialProps({ Component, ctx }) {
+        let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+        if (Component.getInitialProps) {
+            pageProps = await Component.getInitialProps(ctx);
+        }
+
+        return { pageProps };
+    }
+    state = {
+        socket: null
+    }
+    componentDidMount() {
+        // connect to WS server and listen event
+        const socket = io();
+        this.setState({ socket });
     }
 
-    return { pageProps }
-  }
-  state = {
-    socket: null
-  }
-  componentDidMount () {
-    // connect to WS server and listen event
-    const socket = io()
-    this.setState({ socket })
-  }
+    // close socket connection
+    componentWillUnmount() {
+        this.state.socket.close();
+    }
 
-  // close socket connection
-  componentWillUnmount () {
-    this.state.socket.close()
-  }
+    render() {
+        const { Component, pageProps } = this.props;
 
-  render () {
-    const { Component, pageProps } = this.props
-    return (
-      <Container>
-        <Component {...pageProps} socket={this.state.socket} />
-      </Container>
-    )
-  }
+        return (
+            <Container>
+                <Component {...pageProps} socket={this.state.socket} />
+            </Container>
+        );
+    }
 }
 
-export default Wrapper
+export default Wrapper;

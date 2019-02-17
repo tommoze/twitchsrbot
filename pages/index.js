@@ -2,24 +2,34 @@ import { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Table from 'components/Table';
 import Badge from 'components/Badge';
+import cookies from 'js-cookie';
+import { themes } from 'components/Theme';
+import nextcookies from 'next-cookies';
 import 'materialize-css/dist/css/materialize.css';
 
 class App extends Component {
     // fetch old list data from the server
-    static async getInitialProps({ req }) {
+    static async getInitialProps(ctx) {
         const response = await fetch('http://localhost:3000/list');
         const list = await response.json();
-        return list;
+        const { theme } = nextcookies(ctx);
+
+        return {
+            ...list,
+            theme
+        };
     }
 
     static defaultProps = {
-        list: []
+        list: [],
+        theme: cookies.get('theme') || themes.white
     }
 
     state = {
         list: this.props.list,
+        theme: this.props.theme,
         subscribe: false,
-        subscribed: false
+        subscribed: false,
     }
 
     subscribe = () => {

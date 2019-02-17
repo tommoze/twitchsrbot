@@ -22,7 +22,7 @@ export default ({
                 </thead>
                 <tbody>
                     {list.map((item, index) => (
-                        <tr key={index}>
+                        <tr key={item.title}>
                             <td>{index + 1}</td>
                             <td>{item.title}</td>
                             <td>
