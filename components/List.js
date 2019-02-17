@@ -40,7 +40,7 @@ export default ({
         <style jsx>{`
             .move-enter {
                 opacity: 0.01;
-                transform: translate(-40px, 0)
+                transform: translate(-100%, 0)
             }
 
             .move-enter-active {
@@ -56,7 +56,7 @@ export default ({
 
             .move-exit-active {
                 opacity: 0.01;
-                transform: translate(40px, 0);
+                transform: translate(100%, 0);
                 transition: all 300ms ease-in;
             }
         `}</style>
