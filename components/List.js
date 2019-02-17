@@ -1,5 +1,6 @@
 import { themes } from 'components/Theme';
-const config = require('../config');
+import { request } from '../config';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const style = {
     [themes.white]: {
@@ -29,25 +30,61 @@ const style = {
 export default ({
     list,
     theme,
-}) => {
-    if (list.length) {
-        return (
-            <ul 
-                style={{ 
-                    margin: 0,
-                    padding: '30px 0 70px 0' 
-                }}
+}) => (
+    <ul
+        style={{
+            margin: 0,
+            padding: '30px 0 70px 0'
+        }}
+    >
+        <style jsx>{`
+            .move-enter {
+                opacity: 0.01;
+                transform: translate(-40px, 0)
+            }
+
+            .move-enter-active {
+                opacity: 1;
+                transform: translate(0, 0);
+                transition: all 300ms ease-in;
+            }
+
+            .move-exit {
+                opacity: 1;
+                transform: translate(0, 0)
+            }
+
+            .move-exit-active {
+                opacity: 0.01;
+                transform: translate(40px, 0);
+                transition: all 300ms ease-in;
+            }
+        `}</style>
+        {list.length === 0 && (
+            <li
+                key="empty"
+                style={style[theme].color}
             >
-                {list.map((item, index) => (
+                {`Queue is empty, use '${request} Artist - Title' to add song`}
+            </li>
+        )}
+        <TransitionGroup>
+            {list.map((item, index) => (
+                <CSSTransition
+                    key={item.title}
+                    classNames="move"
+                    timeout={300}
+                >
                     <li
-                        key={item.title}
                         style={{
                             position: 'relative',
                             lineHeight: '24px',
                             padding: '0 5px',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
-                            borderBottom: index == list.length - 1 ? 'none' : style[theme].border,
+                            borderBottom: index == list.length - 1
+                                ? 'none'
+                                : style[theme].border,
                         }}
                     >
                         <span
@@ -77,19 +114,8 @@ export default ({
                             {item.by}
                         </span>
                     </li>
-                ))}
-            </ul>
-        );
-    }
-
-    return (
-        <div 
-            style={{
-                ...style[theme].color,
-                padding: '20px 0'
-            }}
-        >
-            {`Queue is empty, use '${config.request} Artist - Title' to add song`}
-        </div>
-    );
-};
+                </CSSTransition>
+            ))}
+        </TransitionGroup>
+    </ul>
+);
