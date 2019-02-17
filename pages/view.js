@@ -11,7 +11,7 @@ const style = {
     [themes.black]: {
         main: {
             backgroundColor: '#000',
-            height: '100%'
+            minHeight: '100%'
         },
     },
 }
@@ -19,9 +19,6 @@ const style = {
 class View extends App {
     constructor(props) {
         super(props);
-        this.state = {
-            ...props
-        };
 
         this.onThemeChange = this.onThemeChange.bind(this);
     }

@@ -3,6 +3,15 @@ export const themes = {
     black: 'black',
 }
 
+const style = {
+    [themes.white]: {
+        background: '#fff',
+    },
+    [themes.black]: {
+        background: '#000',
+    }
+};
+
 export default ({ 
     theme,
     onChange,
@@ -13,7 +22,8 @@ export default ({
             bottom: 0,
             left: 0,
             right: 0,
-            padding: '15px 0'
+            padding: '15px 0',
+            ...style[theme]
         }}
     >
         <form action="#" className="container">

@@ -23,10 +23,7 @@ const getQueue = (format) => list.slice(1, config.queueLimit + 1)
     .join(' ');
 
 const getUserQueue = (user) => list.reduce((acc, cur, i) => 
-    cur.by === user && i !== 0 
-        ? [...acc, `[${i}] ${cur.title}`] 
-        : acc
-    , []);
+    cur.by === user && i !== 0 ? [...acc, `[${i}] ${cur.title}`] : acc, []);
 
 const getFirst = () => list[0]; 
 

@@ -73,16 +73,14 @@ class App extends Component {
         const { list } = this.state;
 
         return (
-            <main>
-                <div className="container">
-                    <Header count={list.length} />
-                    <Table 
-                        list={list}
-                        onDelete={this.handleDelete}
-                        onNotFound={this.handleNotFound}
-                        onMove={this.handleMove}
-                    />
-                </div>
+            <main className="container">
+                <Header count={list.length} />
+                <Table 
+                    list={list}
+                    onDelete={this.handleDelete}
+                    onNotFound={this.handleNotFound}
+                    onMove={this.handleMove}
+                />
             </main>
         );
     }

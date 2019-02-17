@@ -35,7 +35,7 @@ export default ({
             <ul 
                 style={{ 
                     margin: 0,
-                    padding: '20px 0' 
+                    padding: '30px 0 70px 0' 
                 }}
             >
                 {list.map((item, index) => (
