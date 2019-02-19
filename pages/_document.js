@@ -10,7 +10,9 @@ class MyDocument extends Document {
         return (
             <html style={{ height: '100%' }}>
                 <Head>
-                    <style>{`#__next { height: 100% }`}</style>
+                    <style>{`
+                        #__next { height: 100% }
+                    `}</style>
                 </Head>
                 <body style={{ height: '100%' }}>
                     <Main style={{ height: '100%' }} />

@@ -4,10 +4,9 @@ export default ({ count }) => (
         data-badge-caption="in list"
         style={{
             height: 'auto',
-            fontSize: '20px',
-            lineHeight: '32px',
-            padding: '5px 15px',
-            margin: '0 15px',
+            fontSize: '14px',
+            lineHeight: '24px',
+            margin: '0 5px',
         }}
     >
         {count}

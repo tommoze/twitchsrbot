@@ -1,12 +1,14 @@
-import { themes } from 'components/Theme';
+import { themes } from 'components/Constants';
 import { request } from '../config';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const style = {
     [themes.white]: {
-        color: {},
+        color: {
+            color: '#000',
+        },
         by: {
-            background: 'white',
+            background: '#fff',
         },
         border: '1px solid #ccc',
         colorSecondary: {
@@ -15,7 +17,7 @@ const style = {
     },
     [themes.black]: {
         color: {
-            color: 'white'
+            color: '#fff'
         },
         by: {
             background: '#000'
@@ -31,12 +33,7 @@ export default ({
     list,
     theme,
 }) => (
-    <ul
-        style={{
-            margin: 0,
-            padding: '30px 0 70px 0'
-        }}
-    >
+    <ul style={{margin: 0}}>
         <style jsx>{`
             .move-enter {
                 opacity: 0.01;

@@ -2,17 +2,15 @@ import { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Table from 'components/Table';
 import Header from 'components/Header';
-import cookies from 'js-cookie';
-import { themes } from 'components/Theme';
-import nextcookies from 'next-cookies';
+import { themes } from 'components/Constants';
 import 'materialize-css/dist/css/materialize.css';
 
 class App extends Component {
     // fetch old list data from the server
-    static async getInitialProps(ctx) {
+    static async getInitialProps({ query }) {
         const response = await fetch('http://localhost:3000/list');
         const list = await response.json();
-        const { theme } = nextcookies(ctx);
+        const theme = query.theme || themes.black;
 
         return {
             ...list,
@@ -22,7 +20,7 @@ class App extends Component {
 
     static defaultProps = {
         list: [],
-        theme: cookies.get('theme') || themes.white
+        theme: themes.black
     }
 
     state = {
@@ -75,12 +73,14 @@ class App extends Component {
         return (
             <main className="container">
                 <Header count={list.length} />
-                <Table 
-                    list={list}
-                    onDelete={this.handleDelete}
-                    onNotFound={this.handleNotFound}
-                    onMove={this.handleMove}
-                />
+                {list.length > 0 && (
+                    <Table 
+                        list={list}
+                        onDelete={this.handleDelete}
+                        onNotFound={this.handleNotFound}
+                        onMove={this.handleMove}
+                    />
+                )}
             </main>
         );
     }
