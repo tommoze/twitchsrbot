@@ -1,6 +1,7 @@
 const list = require('./list');
 const config = require('../config');
 const emitter = require('./emitter');
+const user = require('./user');
 
 const howRequest = `'${config.request} Artist - Title' to add song`;
 
@@ -10,6 +11,17 @@ const format = (item, isUsernameFirst = false) => isUsernameFirst
 
 const getUsername = context => context['display-name'];
 
+const getLimitMessage = (userLimit) => {
+    switch(userLimit) {
+        case config.requestLimit.user:
+            return `click FOLLOW button to gain ${config.requestLimit.follower} slots in queue`;
+        case config.requestLimit.follower:
+            return `click SUBSCRIBE button to gain ${config.requestLimit.subscriber} slots in queue`;
+        case config.requestLimit.subscriber:
+            return `wait till one of your requests will be played`;
+    }
+}
+
 const onRequest = (context, title) => {
     if (!title) { return howRequest; }
     const by = getUsername(context);
@@ -18,8 +30,9 @@ const onRequest = (context, title) => {
         return `@${by}: ${title} is already in queue`;
     }
 
-    if (list.countByUser(by) >= config.userLimit) {
-        return `@${by}: ${config.userLimit} max songs in queue reached, please request later`;
+    const userLimit = user.getLimit(context);
+    if (list.countByUser(by) >= userLimit) {
+        return `@${by}: ${userLimit} max songs in queue reached, please ${getLimitMessage(userLimit)}`;
     }
 
     list.add({ title, by });

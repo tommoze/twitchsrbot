@@ -4,7 +4,11 @@ module.exports = {
     current: '!cur',
     myQueue: '!myque',
     myRequest: '!myreq',
-    queueLimit: 3,
-    userLimit: 3,
+    displayQueue: 3,
     notifyOnRequest: true,
+    requestLimit: {
+        user: 1,
+        follower: 3,
+        subscriber: 6,
+    }
 };

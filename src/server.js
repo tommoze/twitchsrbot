@@ -4,6 +4,7 @@ const io = require('socket.io')(server);
 const next = require('next');
 const list = require('./list');
 const emitter = require('./emitter');
+const login = require('../login');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -28,7 +29,7 @@ io.on('connection', socket => {
         list.move(from, to);
         emitter.emit('list.move');
     }); 
-})
+});
 
 nextApp.prepare().then(() => {
     app.get('/list', (req, res) => {
@@ -43,5 +44,9 @@ nextApp.prepare().then(() => {
         if (err) throw err;
         console.log(`* Ready on http://localhost:${port}`);
         require('./twitch');
+        if (login.clientId['Client-ID']) {
+            const api = require('./api');
+            api.setStreamerId();
+        }
     })
-})
+});

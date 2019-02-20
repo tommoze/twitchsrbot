@@ -5,7 +5,7 @@ const emitter = require('./emitter');
 const message = require('./message');
 
 // Create a client with our options
-const client = new tmi.client(login);
+const client = new tmi.client(login.twitch);
 
 // Register our event handlers (defined below)
 client.on('message', onMessageHandler);
@@ -16,7 +16,7 @@ client.on('disconnected', onDisconnectedHandler);
 client.connect();
 
 function onMessage(msg) {
-    login.channels.forEach((channel) => client.say(channel, msg));
+    login.twitch.channels.forEach((channel) => client.say(channel, msg));
 }
 
 function getCommand(msg) {

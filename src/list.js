@@ -18,7 +18,7 @@ const moreThanOne = () => list.length > 1;
 
 const getLength = () => list.length - 1;
 
-const getQueue = (format) => list.slice(1, config.queueLimit + 1)
+const getQueue = (format) => list.slice(1, config.displayQueue + 1)
     .map((item, i) => `[${i + 1}] ${format(item)}`)
     .join(' ');
 
