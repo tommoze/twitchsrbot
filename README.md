@@ -23,6 +23,8 @@ or navigate in your explorer to project and open `login.js` file\
 replace `your_bot_twitch_account_name` with your bot twitch account name\
 replace `your_bot_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
 replace `#your_twitch_channel` with your channel\
+if you want to limit non followers to 1 request:\
+replace `'Client-ID': ''` with `'Client-ID': 'your_bot_generated_client_id'` from https://glass.twitch.tv/console/apps/create\
 save file
 
 ## Run bot
