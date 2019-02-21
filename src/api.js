@@ -1,5 +1,6 @@
 const request = require('request');
 const login = require('../login');
+const config = require('../config');
 const emitter = require('./emitter');
 const user = require('./user');
 
@@ -48,7 +49,7 @@ const setFollower = ({ userId, displayName }) => {
             console.log('ERR', err);
         }
         else {
-            user.addUser({ [displayName]: isFollower ? user.roles.follower : user.roles.user })
+            user.addUser({ [displayName]: isFollower ? config.roles.follower : config.roles.user })
         }
     })
 }

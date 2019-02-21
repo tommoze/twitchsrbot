@@ -1,13 +1,8 @@
 const config = require('../config');
 const emitter = require('./emitter');
+const login = require('../login');
 
 let users = {};
-
-const roles = {
-    user: 'user',
-    follower: 'follower',
-    subscriber: 'subscriber',
-}
 
 const addUser = (user) => { 
     users = { 
@@ -16,17 +11,17 @@ const addUser = (user) => {
     };
 };
 
-const getLimit = ({ 'user-id': userId, subscriber, mod, 'display-name': displayName }) => {
-    if ((subscriber || mod) && users[displayName] !== roles.subscriber) {
+const getLimit = ({ 'user-id': userId, subscriber, 'display-name': displayName }) => {
+    if (subscriber && users[displayName] !== config.roles.subscriber) {
         addUser({
-            [displayName]: roles.subscriber
+            [displayName]: config.roles.subscriber
         });
 
-        return config.requestLimit[roles.subscriber];
+        return config.requestLimit[config.roles.subscriber];
     }
 
     if (role = users[displayName]) {
-        if (role === roles.user) {
+        if (role === config.roles.user) {
             // refetch follower status since tmi.js doesn't provide it
             emitter.emit('api.isfollower', { userId, displayName });
         }
@@ -34,13 +29,20 @@ const getLimit = ({ 'user-id': userId, subscriber, mod, 'display-name': displayN
         return config.requestLimit[role];
     }
 
+    if (login.twitch.channels[0].substring(1).toLocaleLowerCase() === displayName.toLowerCase()) {
+        addUser({
+            [displayName]: config.roles.broadcaster
+        });
+
+        return config.requestLimit[config.roles.broadcaster];
+    }
+
     emitter.emit('api.isfollower', { userId, displayName });
 
-    return config.requestLimit[roles.follower]
+    return config.requestLimit[config.roles.follower]
 }
 
 module.exports = {
     getLimit,
     addUser,
-    roles,
 };

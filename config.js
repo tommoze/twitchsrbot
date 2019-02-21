@@ -1,3 +1,10 @@
+const roles = {
+    user: 'user',
+    follower: 'follower',
+    subscriber: 'subscriber',
+    broadcaster: 'broadcaster',
+}
+
 module.exports = {
     request: '!req',
     queue: '!que',
@@ -7,8 +14,10 @@ module.exports = {
     displayQueue: 3,
     notifyOnRequest: true,
     requestLimit: {
-        user: 1,
-        follower: 3,
-        subscriber: 6,
-    }
+        [roles.user]: 1,
+        [roles.follower]: 3,
+        [roles.subscriber]: 6,
+        [roles.broadcaster]: 9999,
+    },
+    roles
 };
