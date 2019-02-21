@@ -58,7 +58,7 @@ const setStreamerId = () => {
         return streamerId;
     }
 
-    requestStreamerId(login.twitch.identity.username, (err, id) => {
+    requestStreamerId(login.twitch.channels[0].substring(1), (err, id) => {
         if(err) {
             console.log('ERR', err);
         }
