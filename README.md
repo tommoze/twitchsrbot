@@ -43,7 +43,7 @@ In terminal paste:\
 ---
 
 Press `win` key\
-type `cmd` click enter\
+type `cmd` press enter\
 type `cd \`\
 `git clone https://github.com/tommoze/twitchsrbot.git`\
 `cd twitchsrbot`\
