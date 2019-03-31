@@ -25,8 +25,6 @@ https://nodejs.org/en/download
 
 ## Download and Install Project
 
----
-
 ### macOS
 
 ---
@@ -49,8 +47,6 @@ type `cd \`\
 
 ## Configure Bot
 
----
-
 Navigate in your explorer to project and open `login.js` file\
 if you're on `windows` its in `c:\twitchsrbot\`\
 if you're on `macOS` its in `/Users/{userName}/twitchsrbot/`/
@@ -63,15 +59,11 @@ save file
 
 ## Run bot
 
----
-
 in `terminal` or `cmd` type:\
 `npm start`\
 open http://localhost:3000 in your browser to manage list
 
 ## Update bot
-
----
 
 type in terminal:\
 `git pull`\
@@ -79,8 +71,6 @@ type in terminal:\
 `npm install`
 
 ## Twitch Chat Commands
-
----
 
 `!req Artist - Title` - requests song and adds to queue\
 `!cur` - bot says first song in queue aka playing one\
