@@ -7,8 +7,6 @@ Node, express, next.js, react, socketio
 
 ## Getting Started
 
----
-
 ### macOS
 
 ---
