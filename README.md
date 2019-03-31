@@ -49,7 +49,7 @@ type `cd \`\
 
 Navigate in your explorer to project and open `login.js` file\
 if you're on `windows` its in `c:\twitchsrbot\`\
-if you're on `macOS` its in `/Users/{userName}/twitchsrbot/`/
+if you're on `macOS` its in `/Users/{userName}/twitchsrbot/`\
 replace `your_bot_twitch_account_name` with your bot twitch account name\
 replace `your_bot_oauth_password` with oauth password from https://twitchapps.com/tmi/ it should look like oauth:xxxx\
 replace `#your_twitch_channel` with your channel\
