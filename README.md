@@ -22,7 +22,7 @@ On macos open terminal and paste:\
 
 ---
 
-https://git-scm.com/downloads\
+https://git-scm.com/downloads \
 https://nodejs.org/en/download
 
 ## Download and Install Project
