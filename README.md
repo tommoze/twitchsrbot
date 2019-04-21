@@ -63,7 +63,7 @@ in `terminal` or `cmd` type:\
 `npm start`\
 open http://localhost:3000 in your browser to manage list
 
-## Update bott
+## Update bottt
 
 type in terminal:\
 `git pull`\
