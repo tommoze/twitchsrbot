@@ -1,5 +1,7 @@
 # twitchsrbot
 
+Disclaimer: Use at Your Own Risk\
+Not maintained for 6 years, needs old node 12\
 Twitch song request bot\
 Node, express, next.js, react, socketio
 
@@ -12,9 +14,11 @@ Node, express, next.js, react, socketio
 ---
 
 Install node and git\
+This is old project and non maintained, it requires old node 12\
 On macos open terminal and paste:\
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` \
-`brew install node git`
+`brew install n git`
+`n 12`
 
 ### windows
 
